@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>メルカリShops商品をアプリで開く</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    window.onload = function () {
+      const productId = getQueryParam("id");
+      if (!productId) {
+        document.body.innerHTML = "<p>商品IDが指定されていません。</p>";
+        return;
+      }
+
+      const appUrl = "mercari://shops/product?id=" + productId;
+      const webUrl = "https://mercari-shops.com/seller/shops/jEPvtSDSaCjAUhqjwVtE7L/products/" + productId;
+
+      window.location = appUrl;
+      setTimeout(function () {
+        window.location = webUrl;
+      }, 2000);
+    };
+  </script>
+</head>
+<body>
+  <p>アプリを開いています。開かない場合は数秒後に商品ページが表示されます。</p>
+</body>
+</html>
